@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function logId(id) {
     if (typeof id === "string") {
         console.log(id);

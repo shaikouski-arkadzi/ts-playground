@@ -19,3 +19,5 @@ const config = {
 //   readonly retries: 3;
 //   readonly mode: "dark";
 // }
+
+export {};

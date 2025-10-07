@@ -45,3 +45,5 @@ const userDicObj: UserDic = {
     skills: ["JS", "Java"],
   },
 };
+
+export {};

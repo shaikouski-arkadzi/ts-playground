@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // Гидрогенный enum
 var StatusCode;
 (function (StatusCode) {
@@ -15,5 +16,3 @@ if (response.statusCode === StatusCode.SUCCESS) {
 function action(status) { }
 // Можем передавать только ключ enum
 action(StatusCode.SUCCESS);
-// По значению выховет ошибку
-// action("s"); Argument of type '"s"' is not assignable to parameter of type 'StatusCode'

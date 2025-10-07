@@ -23,3 +23,5 @@ function logObject(obj: { a: number } | { b: number }) {
     console.log(obj.b);
   }
 }
+
+export {};

@@ -19,3 +19,5 @@ function action(status: StatusCode) {}
 action(StatusCode.SUCCESS);
 // По значению выховет ошибку
 // action("s"); Argument of type '"s"' is not assignable to parameter of type 'StatusCode'
+
+export {};
