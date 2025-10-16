@@ -33,9 +33,30 @@ function getData() {
             yield fetch("");
         }
         catch (error) {
+            // В catch бедет прихожить тип unknown
             if (error instanceof Error) {
                 console.log(error.message);
             }
         }
     });
 }
+// JSON.parse возвращает any
+// Лучше в этом случае переделать чтоб работать с unknown
+const userData = '{"isBirthdayData": true, "ageData": 40, "userNameData": "John"}';
+// Благодаря safeParse JSON.parse вернет не any, а unknown
+function safeParse(s) {
+    return JSON.parse(s);
+}
+const data = safeParse(userData);
+function transferData(d) {
+    if (typeof d === "string") {
+        console.log(d.toLowerCase());
+    }
+    else if (typeof d === "object" && d) {
+        console.log(data);
+    }
+    else {
+        console.error("Some error");
+    }
+}
+transferData(data);
