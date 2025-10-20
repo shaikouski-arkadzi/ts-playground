@@ -1,5 +1,6 @@
 "use strict";
 // Перечисление с названием TypesOfMedia, которое включает строчные типы video, audio
+Object.defineProperty(exports, "__esModule", { value: true });
 var TypesOfMedia;
 (function (TypesOfMedia) {
     TypesOfMedia["VIDEO"] = "video";

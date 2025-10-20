@@ -62,3 +62,5 @@ playMedia({
   subtitles: "hmhmhm hmhmhm doh",
   marks: ["4:30", "5:40"],
 });
+
+export {};
