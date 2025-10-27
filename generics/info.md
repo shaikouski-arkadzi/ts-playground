@@ -114,3 +114,108 @@
     interface DataSaver {
       processing: ProcessingFn;
     }
+
+## Обобщенный типы и интерфейсы
+
+Создание обобщенного type так же позволяет подставлять нужный тип уже во время использования. Синтаксис использует все те же идентификаторы в угловых скобках:
+
+    // Синтаксис
+    type MyType<T> = T;
+
+    // Использование
+    let value: MyType<string> = "hello";
+
+    // Использование с литералом
+    type Status<T> = {
+      code: T;
+      message: string;
+    };
+
+Type так же позволяет создавать generic helper types за счет поддержки литеральных значений.
+
+    type OrNull<Type> = Type | null;
+
+    type OneOrMany<Type> = Type | Type[];
+
+    const data: OneOrMany<number[]> = [5];
+
+### Интерфейсы
+
+    // Пример 1
+    interface User<T> {
+      login: T;
+      age: number;
+    }
+
+    // Пример 2
+    interface User<ParentsData> {
+      login: string;
+      age: number;
+      parents: ParentsData;
+    }
+
+Проблема следующего кода в том, что при создании объекта мы можем поместить в свойство parents все что угодно. А по задумке это должен быть объект со свойствами mother и father:
+
+    interface User<ParentsData> {
+      login: string;
+      age: number;
+      parents: ParentsData;
+    }
+
+    const user: User<{mother: string, father: string}> = {
+      login: "str",
+      age: 54,
+      parents: {mother: 'Anne', father: 'no data'}
+    };
+
+Эту проблему можно решить, если создать отдельный интерфейс и типизировать свойство parents. Но проблема в том, что тогда в этот объект не сможет попасть никакое другое свойство. А мы бы хотели сделать его расширяемым, но с двумя обязательными свойствами:
+
+    interface ParentsOther {
+      mother: string;
+      father: string;
+    }
+
+    interface User {
+      login: string;
+      age: number;
+      parents: ParentsOther;
+    }
+
+    const user: User = {
+      login: "str",
+      age: 54,
+      parents: {mother: "Anne", father: "no data"} // Никаких других свойств
+    };
+
+Для решения этой задачи и создан механизм ограничения, который позволит "ограничить" идентификатор в дженерике. В данном случае мы можем сказать, что он будет только объектом любого размера с двумя обязательными свойствами. Для этого используем **extends**:
+
+    interface ParentsOther {
+      mother: string;
+      father: string;
+    }
+
+    interface User<ParentsData extends ParentsOther> {
+      login: string;
+      age: number;
+      parents: ParentsData;
+    }
+
+    const user: User<{mother: string; father: string; married: boolean}> = {
+      login: "str",
+      age: 54,
+      parents: {mother: "Anne", father: "no data", married: true}
+    };
+
+Для ограничений можно использовать и примитивные типы, в том числе и union. Например функция, которая принимает только строку или число:
+
+    const depositMoney = <T extends string | number>(amount: T): T => {
+      console.log(`req to server with amount: ${amount}`);
+      return amount;
+    };
+
+Альтернативный вариант с использованием обычного union типа так же можно использовать. Но тут будет повторение кода:
+
+    const depositMoney = (amount: number | string): number | string => {
+      console.log(`req to server with amount: ${amount}`);
+      return amount;
+    };
