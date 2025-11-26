@@ -19,3 +19,11 @@ const gameData = {
         customUsa: "test",
     },
 };
+// ReturnType
+function calculate(a, b) {
+    return a * b;
+}
+// ConstructorParameters
+class Example {
+    constructor(a) { }
+}

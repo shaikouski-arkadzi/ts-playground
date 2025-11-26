@@ -69,4 +69,25 @@ const gameData: gameDataCurrencies = {
   },
 };
 
+// ReturnType
+
+function calculate(a: number, b: number): number {
+  return a * b;
+}
+
+type CalculateRT = ReturnType<typeof calculate>; // number
+
+// Parameters
+
+type CalculatePT = Parameters<typeof calculate>; // [a: number, b: number]
+type CalculatePTFirst = Parameters<typeof calculate>[0]; // number
+
+// ConstructorParameters
+
+class Example {
+  constructor(a: number) {}
+}
+
+type T0 = ConstructorParameters<typeof Example>; // [a: number]
+
 export {};
