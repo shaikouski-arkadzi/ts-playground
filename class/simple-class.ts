@@ -1,8 +1,19 @@
 class User {
   name: string;
+  skills: string[] = [];
 
   constructor(name: string) {
     this.name = name;
+  }
+
+  addSkills(skill: string): void;
+  addSkills(skills: string[]): void;
+  addSkills(skillOrSkills: string | string[]): void {
+    if (typeof skillOrSkills === "string") {
+      this.skills.push(skillOrSkills);
+    } else {
+      this.skills.push(...skillOrSkills);
+    }
   }
 }
 
