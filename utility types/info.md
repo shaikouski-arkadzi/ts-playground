@@ -88,3 +88,29 @@
     	    customUsa:  "test",
         },
     };
+
+## ReturnType
+
+Тип **ReturnType** необходим для получения типа, который возвращает переданная ему функция. Используется именно тип функции, так что не забываем применять typeof:
+
+    function calculate(a: number, b: number): number {}
+
+    type CalculateRT = ReturnType<typeof calculate>; // number
+
+## Parameters
+
+Тип **Parameters** позволяет получать тип аргументов функции в виде кортежа:
+
+    type  CalculatePT = Parameters<typeof  calculate>; // [a: number, b: number]
+
+    type  CalculatePTFirst = Parameters<typeof  calculate>[0]; // number
+
+## ConstructorParameters
+
+Тип **ConstructorParameters** позволяет получать тип аргументов в классах:
+
+    class  Example {
+    	constructor(a: number) {}
+    }
+
+    type  T0 = ConstructorParameters<typeof  Example>; // [a: number]
