@@ -20,7 +20,18 @@ class User {
 const user = new User("Вася");
 
 class Admin {
+  // ! - definite assignment assertion
+  // Я обещаю TypeScript, что значение появится до использования
   name!: string;
+  _email!: string;
+
+  set email(email: string) {
+    this._email = email;
+  }
+
+  get email() {
+    return this._email;
+  }
 }
 
 const admin = new Admin();
