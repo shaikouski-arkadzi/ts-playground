@@ -73,12 +73,19 @@ payment.unholdPayment();
 const time = payment.getPayment();
 
 class PersistentPayment extends Payment {
-  databaseId: number;
-  paidAt: Date;
+  databaseId!: number;
+  paidAt!: Date;
 
   constructor() {
     const id = Math.random();
     super(id);
+  }
+
+  override unholdPayment(date?: Date): void {
+    super.unholdPayment();
+    if (date) {
+      this.paidAt = date;
+    }
   }
 }
 

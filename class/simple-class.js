@@ -15,6 +15,12 @@ class User {
 }
 const user = new User("Вася");
 class Admin {
+    set email(email) {
+        this._email = email;
+    }
+    get email() {
+        return this._email;
+    }
 }
 const admin = new Admin();
 var PaymentStatus;
@@ -44,3 +50,16 @@ class Payment {
 const payment = new Payment(1);
 payment.unholdPayment();
 const time = payment.getPayment();
+class PersistentPayment extends Payment {
+    constructor() {
+        const id = Math.random();
+        super(id);
+    }
+    unholdPayment(date) {
+        super.unholdPayment();
+        if (date) {
+            this.paidAt = date;
+        }
+    }
+}
+new PersistentPayment();
