@@ -71,3 +71,15 @@ class Payment {
 const payment = new Payment(1);
 payment.unholdPayment();
 const time = payment.getPayment();
+
+class PersistentPayment extends Payment {
+  databaseId: number;
+  paidAt: Date;
+
+  constructor() {
+    const id = Math.random();
+    super(id);
+  }
+}
+
+new PersistentPayment();
