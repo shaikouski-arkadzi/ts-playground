@@ -14,6 +14,19 @@ class User {
     }
 }
 const user = new User("Вася");
+// Наследование
+class Users extends Array {
+    searchByName(name) {
+        return this.filter((u) => u.name === name);
+    }
+}
+const users = new Users();
+// Композиция
+class UserList {
+    push(u) {
+        this.users.push(u);
+    }
+}
 class Admin {
     set email(email) {
         this._email = email;
@@ -63,3 +76,13 @@ class PersistentPayment extends Payment {
     }
 }
 new PersistentPayment();
+// Наследование
+class UserWithPayment extends Payment {
+}
+// Композиция
+class UserWithPayment2 {
+    constructor(user, payment) {
+        this.payment = payment;
+        this.user = user;
+    }
+}

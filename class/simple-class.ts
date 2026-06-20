@@ -19,6 +19,24 @@ class User {
 
 const user = new User("Вася");
 
+// Наследование
+class Users extends Array<User> {
+  searchByName(name: string) {
+    return this.filter((u) => u.name === name);
+  }
+}
+
+const users = new Users();
+
+// Композиция
+class UserList {
+  users!: User[];
+
+  push(u: User) {
+    this.users.push(u);
+  }
+}
+
 class Admin {
   // ! - definite assignment assertion
   // Я обещаю TypeScript, что значение появится до использования
@@ -90,3 +108,19 @@ class PersistentPayment extends Payment {
 }
 
 new PersistentPayment();
+
+// Наследование
+class UserWithPayment extends Payment {
+  name!: string;
+}
+
+// Композиция
+class UserWithPayment2 {
+  user: User;
+  payment: Payment;
+
+  constructor(user: User, payment: Payment) {
+    this.payment = payment;
+    this.user = user;
+  }
+}
