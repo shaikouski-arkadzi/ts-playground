@@ -124,3 +124,21 @@ class UserWithPayment2 {
     this.user = user;
   }
 }
+
+class Vehicle {
+  public make!: string;
+  private damages!: string[];
+  protected run!: number;
+  #price!: number;
+}
+
+class EuroTruck extends Vehicle {
+  setRun(km: number) {
+    // run доступен в наследуемом
+    this.run = km / 0.62;
+  }
+}
+
+// run не доступен в экземпляре
+// damages не доступен в экземпляре
+new Vehicle().make;

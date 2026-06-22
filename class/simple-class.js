@@ -1,4 +1,5 @@
 "use strict";
+var _Vehicle_price;
 class User {
     constructor(name) {
         this.skills = [];
@@ -86,3 +87,18 @@ class UserWithPayment2 {
         this.user = user;
     }
 }
+class Vehicle {
+    constructor() {
+        _Vehicle_price.set(this, void 0);
+    }
+}
+_Vehicle_price = new WeakMap();
+class EuroTruck extends Vehicle {
+    setRun(km) {
+        // run доступен в наследуемом
+        this.run = km / 0.62;
+    }
+}
+// run не доступен в экземпляре
+// damages не доступен в экземпляре
+new Vehicle().make;
