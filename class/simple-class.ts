@@ -142,3 +142,20 @@ class EuroTruck extends Vehicle {
 // run не доступен в экземпляре
 // damages не доступен в экземпляре
 new Vehicle().make;
+
+class UserService {
+  static db: any;
+
+  create() {
+    UserService.db;
+  }
+
+  // Инициализация статичных свойств при загрузке класса.
+  // Код внутри выполняется автоматически,
+  // как только класс появляется в системе.
+  static {
+    UserService.db = "1f";
+  }
+}
+
+UserService.db;
