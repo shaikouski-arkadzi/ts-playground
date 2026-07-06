@@ -159,3 +159,5 @@ class UserService {
 }
 
 UserService.db;
+
+export {};

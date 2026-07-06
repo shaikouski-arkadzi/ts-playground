@@ -1,5 +1,6 @@
 "use strict";
 var _Vehicle_price;
+Object.defineProperty(exports, "__esModule", { value: true });
 class User {
     constructor(name) {
         this.skills = [];
