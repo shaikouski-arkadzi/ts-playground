@@ -1,3 +1,21 @@
+interface HttpResponse<T extends "success" | "failed"> {
+  errorCode: number;
+  data: T extends "success" ? string : Error;
+  additionalData: string;
+}
+
+const success: HttpResponse<"success"> = {
+  errorCode: 200,
+  data: "done", // string — корректно
+  additionalData: "ok",
+};
+
+const failed: HttpResponse<"failed"> = {
+  errorCode: 500,
+  data: new Error(), // Error — корректно
+  additionalData: "fail",
+};
+
 type FromUserOrFromBase<T extends string | number> = T extends string
   ? IDataFromUser
   : IDataFromBase;
