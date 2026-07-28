@@ -4,6 +4,7 @@
   которые имеют id
   по убыванию и по возрастанию
 */
+Object.defineProperty(exports, "__esModule", { value: true });
 const data = [
     { id: 1, name: "Вася" },
     { id: 2, name: "Петя" },

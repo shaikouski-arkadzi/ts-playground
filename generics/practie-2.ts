@@ -24,3 +24,5 @@ function sort<T extends ID>(data: T[], type: "asc" | "desc" = "asc"): T[] {
     }
   });
 }
+
+export {};
