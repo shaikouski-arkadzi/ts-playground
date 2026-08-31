@@ -54,3 +54,15 @@ class ABInsuranceFactory extends InsuranceFactory {
         return new ABInsurance();
     }
 }
+const INSURANCE_TYPE = {
+    tf: TFInsurance,
+    ab: ABInsurance,
+};
+class InsuranceFactoryAlt {
+    createInsurance(type) {
+        return INSURANCE_TYPE[type];
+    }
+    saveHistory(ins) {
+        this.db.save(ins.id, ins.status);
+    }
+}

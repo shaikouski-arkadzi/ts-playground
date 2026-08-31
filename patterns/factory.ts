@@ -60,4 +60,22 @@ class ABInsuranceFactory extends InsuranceFactory {
   }
 }
 
+const INSURANCE_TYPE = {
+  tf: TFInsurance,
+  ab: ABInsurance,
+};
+
+type IT = typeof INSURANCE_TYPE;
+
+class InsuranceFactoryAlt {
+  db: any;
+  createInsurance<T extends keyof IT>(type: T): IT[T] {
+    return INSURANCE_TYPE[type];
+  }
+
+  saveHistory(ins: IInsurance) {
+    this.db.save(ins.id, ins.status);
+  }
+}
+
 export {};
